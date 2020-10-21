@@ -1,4 +1,4 @@
-/* tslint:disable:object-literal-key-quotes */
+/* tslint:disable:object-literal-key-quotes object-literal-sort-keys ordered-imports trailing-comma */
 import '@angular/localize/init';
 import {loadTranslations} from '@angular/localize';
 

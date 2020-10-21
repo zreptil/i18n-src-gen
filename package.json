@@ -4,7 +4,9 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "tsc && node dist/index.js --srcmask=../../squadlist/src/locale/messages.*.xlf --tplfile=../src/assets/templates/messages.ts.tpl --outfile=messages.ts",
+    "build": "tsc -p tsconfig.json && npm run copy:assets",
+    "copy:assets": "cpx src/assets/** dist/assets",
+    "start": "tsc && npm run copy:assets && node dist/index.js --srcmask=../../squadlist/src/locale/messages.*.xlf",
     "fullargs": "tsc && node dist/index.js --test --src=../../squadlist/src/locale/messages.xlf --srcdir=../../squadlist/src/locale --srcmask=../../squadlist/src/locale/messages.*.xlf",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +19,7 @@
   },
   "dependencies": {
     "@types/node": "^14.14.0",
+    "cpx": "^1.5.0",
     "express": "^4.16.4",
     "fast-xml-parser": "^3.17.4"
   }

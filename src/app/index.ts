@@ -1,10 +1,10 @@
+import * as xml from 'fast-xml-parser';
 import fs from 'fs';
 import * as path from 'path';
-import * as xml from 'fast-xml-parser';
 
 const fileList = [];
-let tplFile = null;
-let outFile = null;
+let tplFile = 'assets/templates/messages.ts.tpl';
+let outFile = 'messages.ts';
 
 for (const arg of process.argv) {
   const check = arg.toLowerCase();
@@ -37,18 +37,19 @@ for (const arg of process.argv) {
       }
       break;
     case '--tplfile':
-      try {
-        tplFile = fs.readFileSync(path.join(__dirname, value)).toString();
-      } catch (ex) {
-        tplFile = null;
-        console.error(ex.message);
-      }
-
+      tplFile = value;
       break;
     case '--outfile':
       outFile = value;
       break;
   }
+}
+
+try {
+  tplFile = fs.readFileSync(path.join(__dirname, tplFile)).toString();
+} catch (ex) {
+  tplFile = null;
+  console.error(ex.message);
 }
 
 if (tplFile == null || fileList.length === 0) {
@@ -94,9 +95,9 @@ function fill(tpl: string, data: any): string {
 
 function extract(content: string): any {
   const options = {
-    parseNodeValue: false,
     ignoreAttributes: false,
     parseAttributeValue: false,
+    parseNodeValue: false,
   };
   const doc = xml.parse(content, options);
   const srcLang = doc.xliff.file['@_source-language'];
