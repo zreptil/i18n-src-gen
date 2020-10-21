@@ -1,0 +1,23 @@
+{
+  "name": "node-with-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "tsc && node dist/index.js --srcmask=../../squadlist/src/locale/messages.*.xlf --tplfile=../src/assets/templates/messages.ts.tpl --outfile=messages.ts",
+    "fullargs": "tsc && node dist/index.js --test --src=../../squadlist/src/locale/messages.xlf --srcdir=../../squadlist/src/locale --srcmask=../../squadlist/src/locale/messages.*.xlf",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "@types/node": "^14.14.0",
+    "express": "^4.16.4",
+    "fast-xml-parser": "^3.17.4"
+  }
+}
